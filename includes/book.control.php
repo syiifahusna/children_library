@@ -1,0 +1,3 @@
+class BookControl extends Book{
+
+}
