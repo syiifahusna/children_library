@@ -343,6 +343,7 @@ header {
   box-shadow: var(--shadow);
   padding: 2rem;
   text-align: left;
+  margin: auto;
 }
 
 .form-col {
@@ -400,6 +401,15 @@ form label {
   border: 0.1rem solid var(--green);
   border-radius: 0.5rem;
 }
+
+/*table*/
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+/*end table*/
 
 /*footer*/
 

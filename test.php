@@ -1,6 +1,6 @@
 <?php
- //create class connection to connect with library
- class Connection {
+//create class connection to connect with library
+class Connection {
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
@@ -12,7 +12,7 @@
         
         // Check connection
         if ($conn->connect_error) {
-            return $conn->connect_error;
+            return die("Connection failed: " . $conn->connect_error);
         }else{
             return $conn;
         }
@@ -20,35 +20,44 @@
 
 }
 
+class User extends Connection{
 
-class Test extends Connection{
-
-    protected function test(){
-
-        $sql = "SELECT * FROM book";
-        $result = $this->connect()->query($sql);
-
-        if ($result->num_rows > 0) {
-            //output data of each row
-            return $result;
-            
+    protected function register($username,$email){
+        if(($username == true) && ($email == true)){
+            return "both true";
         }else{
-            return 0;
+            return "all false or 1 false";
         }
-
-    }
-
-}
-
-class Display extends Test{
-
-    public function display($search){
-        $test = new Test();
-        $testing = $test->test();
+        
     }
 }
-$a="rapun";
-$display = new Display($a);
 
+class UserControl extends User{
+    private $age;
+
+    public function __construct($age){
+        $this->age = $age;
+    }
+
+    public function rgis(){
+        if($this->validateNumber() == true){
+            echo "true";
+        }else{
+            echo "false";
+        }
+    }
+
+    //validate number
+    private function validateNumber(){
+        if(is_numeric($this->age)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+$aa = new UserControl("aa");
+echo md5("hello");
 ?>
 

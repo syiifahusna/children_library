@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,19 +22,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-     <!--Navigation-->
-     <header>
-        <div class="navbar">
-           <h2><a href="index.php" class="logo">Children Library</a></h2>
-            <input type="checkbox" class="ck-collapse" id="btn-collapse">
-            <label for="btn-collapse" class="icon-collapse">
-                <span class="fas fa-bars"></span>
-            </label>
-            <div class="navbar-nav" id="navbar-nav">
-                <ul>
-                    <li class="link-list"><a href="books.php">Books</a></li>
-                    <li class="link-list"><a href="login.php">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <!-- Navigation -->
+    <?php
+        if(isset($_SESSION["userID"])){
+    ?>
+            <!-- Login -->
+            <header>
+                <div class="navbar">
+                    <h2><a href="index.php" class="logo">Children Library</a></h2>
+                    <input type="checkbox" class="ck-collapse" id="btn-collapse">
+                    <label for="btn-collapse" class="icon-collapse">
+                        <span class="fas fa-bars"></span>
+                    </label>
+                    <div class="navbar-nav" id="navbar-nav">
+                        <ul>
+                            <li class="link-list"><a href="books.php">Books</a></li>
+                            <li class="link-list"><a href="profile.php">Profile</a></li>
+                            <li class="link-list"><a href="borrowed_books.php">Borrowed Books</a></li>
+                            <li class="link-list"><a href="load.php?logout=true">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+    <?php
+        }else if(isset($_SESSION["adminID"])){
+    ?>
+            <!-- Admin -->
+            <header>
+                <div class="navbar">
+                    <h2><a href="admin_home.php" class="logo">Children Library</a></h2>
+                    <input type="checkbox" class="ck-collapse" id="btn-collapse">
+                    <label for="btn-collapse" class="icon-collapse">
+                        <span class="fas fa-bars"></span>
+                    </label>
+                    <div class="navbar-nav" id="navbar-nav">
+                        <ul>
+                            <li class="link-list"><a href="admin_books.php">Books</a></li>
+                            <li class="link-list"><a href="admin_settings.php">Settings</a></li>
+                            <li class="link-list"><a href="admin_users.php">Users</a></li>
+                            <li class="link-list"><a href="admin_borrow_record.php">Borrow Record</a></li>
+                            <li class="link-list"><a href="load.php?logout=true">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+    <?php
+        }else{
+    ?>        
+            <header>
+                <div class="navbar">
+                    <h2><a href="index.php" class="logo">Children Library</a></h2>
+                    <input type="checkbox" class="ck-collapse" id="btn-collapse">
+                    <label for="btn-collapse" class="icon-collapse">
+                        <span class="fas fa-bars"></span>
+                    </label>
+                    <div class="navbar-nav" id="navbar-nav">
+                        <ul>
+                            <li class="link-list"><a href="books.php">Books</a></li>
+                            <li class="link-list"><a href="login.php">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+    <?php
+        }
+    ?>

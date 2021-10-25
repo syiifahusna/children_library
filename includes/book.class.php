@@ -6,7 +6,7 @@ class Book extends Connection{
 
     protected function getBooks(){
 
-        $sql = "SELECT * FROM book";
+        $sql = "SELECT * FROM books";
         $result = $this->connect()->query($sql);
 
         if ($result->num_rows > 0) {
@@ -18,7 +18,7 @@ class Book extends Connection{
 
     protected function getBook($book_title){
         //fix search security
-        $sql = "SELECT * FROM book WHERE book_title LIKE '%". $book_title ."%'";
+        $sql = "SELECT * FROM books WHERE book_title LIKE '%". $book_title ."%'";
         $result = $this->connect()->query($sql);
 
         if ($result->num_rows > 0) {
@@ -26,12 +26,11 @@ class Book extends Connection{
         }else{
             return  $result;
         }
-        
     }
 
     protected function getBookInfo($id){
         //fix search security
-        $sql = "SELECT * FROM book WHERE id = '". $id ."'";
+        $sql = "SELECT * FROM books WHERE id = '". $id ."'";
         $result = $this->connect()->query($sql);
 
         if ($result->num_rows > 0) {
