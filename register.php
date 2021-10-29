@@ -1,6 +1,14 @@
 <?php
     include('asset/header.php');
     include('includes/user.view.php');
+
+    if(isset($_SESSION["userID"])){
+        //redirect to index
+        header('Location: index.php');
+        exit();
+    }else{
+    
+    }
 ?>
 <section>
     <h1>Register</h1>

@@ -6,11 +6,14 @@
 <section class="col-2">
 
 <?php
-$bookView = new BookView();
+
 if(isset($_GET["id"]) != ""){
+    $bookView = new BookView();
     $id = $_GET["id"];
     $bookInfo = $bookView->displayBookInfo($id);
 }else{
+     //redirect to books
+     header('Location: books.php');
     exit;
 }
 
@@ -19,7 +22,6 @@ if(isset($_GET["id"]) != ""){
 <div class="col-2-container">            
     <div class="col-2-content">
         <img src="<?php echo "book_img/".$bookInfo['book_cover'] ?>" class="col-2-img" style="width:30rem">
-        <!-- <iframe src="" height="800px" width="100%" title="Iframe Example"></iframe> -->
     </div>
     <div class="col-2-content">
     

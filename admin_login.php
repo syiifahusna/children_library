@@ -35,13 +35,7 @@
                 ?>
             </div>
             <div class="form-col">
-                <input type="submit" class="btn-2" name="login" value="Login"/>
-            </div>
-
-            <div class="form-col">
-                <p>
-                    no account? click <a href="register.php" class="btn">here</a> to register new account.
-                </p>
+                <input type="submit" class="btn-2" name="admin_login" value="Login"/>
             </div>
         </form>
     </div>

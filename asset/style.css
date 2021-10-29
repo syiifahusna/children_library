@@ -196,6 +196,12 @@ header {
   margin-bottom: 0.5rem;
 }
 
+.col-2-content h3 {
+  color: var(--dark-green);
+  text-shadow: var(--shadow-text);
+  margin-bottom: 0.5rem;
+}
+
 .col-2-content p {
   color: var(--dark-green);
 }
@@ -403,10 +409,53 @@ form label {
 }
 
 /*table*/
-table,
-th,
+
+.table-bg {
+  background-color: var(--green);
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  display: block;
+}
+
+table {
+  width: 100%;
+  margin: auto;
+  color: var(--dark-green);
+  border: 0.2rem solid var(--dark-green);
+  border-radius: 0.5rem;
+  text-align: left;
+}
+
+th {
+  color: var(--yellow);
+  font-size: 1.3rem;
+  color: var(--soft-orange);
+  text-shadow: var(--shadow-text);
+  padding: 0.5rem;
+}
+
 td {
-  border: 1px solid black;
+  color: var(--yellow);
+  padding: 0.5rem;
+  border-bottom: 0.2rem solid var(--dark-green);
+  border-right: 0.2rem solid var(--dark-green);
+  font-size: 1rem;
+}
+
+td:last-child {
+  border-right: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:first-child td {
+  font-size: 1.3rem;
+  color: var(--soft-orange);
+  text-shadow: var(--shadow-text);
 }
 
 /*end table*/

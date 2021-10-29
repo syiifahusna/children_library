@@ -71,14 +71,19 @@ class UserControl extends User{
                     $_SESSION["userName"] = $user["username"];
                     $_SESSION["eMail"] = $user["email"];
                     $_SESSION["fullName"] = $user["fullname"];
+
                     header('Location: index.php');
                     exit();
                 }
             }else{
                 $errInfo ="Form Not Filled Properly";
+                header('Location: login.php?errInfo='. $errInfo);
+                exit();
             }
         }else{
             $errInfo ="All Field must be more than 5 Character";
+            header('Location: login.php?errInfo='. $errInfo);
+            exit();
         }
         return $errInfo;
     }

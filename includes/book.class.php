@@ -6,7 +6,7 @@ class Book extends Connection{
 
     protected function getBooks(){
 
-        $sql = "SELECT * FROM books";
+        $sql = "SELECT * FROM books ORDER BY id DESC";
         $result = $this->connect()->query($sql);
 
         if ($result->num_rows > 0) {
@@ -20,7 +20,6 @@ class Book extends Connection{
         //fix search security
         $sql = "SELECT * FROM books WHERE book_title LIKE '%". $book_title ."%'";
         $result = $this->connect()->query($sql);
-
         if ($result->num_rows > 0) {
             return $result;
         }else{
@@ -29,7 +28,7 @@ class Book extends Connection{
     }
 
     protected function getBookInfo($id){
-        //fix search security
+        //fif i add and or where condition probably will get error
         $sql = "SELECT * FROM books WHERE id = '". $id ."'";
         $result = $this->connect()->query($sql);
 

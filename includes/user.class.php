@@ -31,5 +31,33 @@ class User extends Connection{
             return false;
         }
     }
+
+    protected function getAllUsers(){
+        $sql = "SELECT * FROM users ORDER BY id DESC";
+        $result = $this->connect()->query($sql);
+        if($result){
+            if ($result->num_rows > 0) {
+                return $result;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    protected function getUserInfo($userId){
+        $sql = "SELECT * FROM users WHERE id ='". $userId ."'";
+        $result = $this->connect()->query($sql);
+        if($result){
+            if ($result->num_rows > 0) {
+                return $result->fetch_assoc();
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
 ?>

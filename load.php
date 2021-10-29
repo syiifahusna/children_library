@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 if(isset($_POST["register"])){
     //grab posted data
     $username = $_POST["username"];
@@ -26,9 +24,8 @@ if(isset($_POST["register"])){
     //create obj usercontroller
     include('includes/user.control.php');
     $login = new UserControl();
-
-    $login->setUserLogin($username,$password);
-    $login->loginUser();
+    $login->setUserLogin($username,$password);    
+    echo $login->loginUser();
 
 }else if(isset($_GET["logout"])){
     if($_GET["logout"] == true){
@@ -40,19 +37,27 @@ if(isset($_POST["register"])){
     }else{
         //blank
     }
-}else if(isset($_GET["borrow"])){
-    //check if session exist for load page
-    if(isset($_SESSION["userID"])){
-        //redirect to index
-        header('Location: borrow_book.php');
-        exit();
+}else if(isset($_POST["admin_login"])){
+    
+    if($_POST["admin_login"] != ""){
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        //create obj usercontroller
+        include('includes/admin.control.php');
+        $login = new AdminControl();
+        $login->setAdminLogin($username,$password);    
+        echo $login->loginAdmin();
     }else{
-         //redirect to index
-         header('Location: login.php');
-         exit();
+        header('Location: admin_login.php?errInfo="Wrong Username or Password"');
+        exit();
     }
+
+
+
 }else{
-    //blank
+    header('Location: login.php');
+    exit();
 }
 
 

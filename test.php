@@ -22,42 +22,44 @@ class Connection {
 
 class User extends Connection{
 
-    protected function register($username,$email){
-        if(($username == true) && ($email == true)){
-            return "both true";
-        }else{
-            return "all false or 1 false";
-        }
+    protected function UserC(){
+
         
     }
 }
 
 class UserControl extends User{
-    private $age;
-
-    public function __construct($age){
-        $this->age = $age;
-    }
-
-    public function rgis(){
-        if($this->validateNumber() == true){
-            echo "true";
-        }else{
-            echo "false";
-        }
-    }
-
-    //validate number
-    private function validateNumber(){
-        if(is_numeric($this->age)){
-            return true;
-        }else{
-            return false;
-        }
+    public function userV(){
+        
     }
 }
 
-$aa = new UserControl("aa");
-echo md5("hello");
+$user = new UserControl();
+
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "child_library";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM borrow INNER JOIN books ON borrow.book_id = books.id INNER JOIN users ON borrow.user_id = users.id WHERE borrow.id=6";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    print_r($row);
+  }
+} else {
+  echo "0 results";
+}
+
 ?>
 

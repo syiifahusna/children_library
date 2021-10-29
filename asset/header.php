@@ -58,7 +58,6 @@
                     <div class="navbar-nav" id="navbar-nav">
                         <ul>
                             <li class="link-list"><a href="admin_books.php">Books</a></li>
-                            <li class="link-list"><a href="admin_settings.php">Settings</a></li>
                             <li class="link-list"><a href="admin_users.php">Users</a></li>
                             <li class="link-list"><a href="admin_borrow_record.php">Borrow Record</a></li>
                             <li class="link-list"><a href="load.php?logout=true">Logout</a></li>
