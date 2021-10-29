@@ -40,6 +40,25 @@ class Book extends Connection{
         }
     }
 
+    protected function editBook($bookId,$bookTitle,$aboutBook,$publishDate,$category){
+        $sql = "UPDATE books SET book_title='".$bookTitle."', about_book='".$aboutBook."', publish_date='".$publishDate."', category='".$category."' WHERE id='".$bookId."'";
+
+        if ($this->connect()->query($sql) === TRUE) {
+           return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function setBook($bookTitle,$aboutBook,$publishDate,$category,$bookCover){
+        $sql = "INSERT INTO books (book_title, about_book, publish_date, category, book_cover) VALUES ('".$bookTitle."', '".$aboutBook."', '".$publishDate."', '".$category."', '".$bookCover."')";
+
+        if ($this->connect()->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>

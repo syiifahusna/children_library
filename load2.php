@@ -27,19 +27,44 @@ if(isset($_POST["borrowYes"])){
         include('includes/user.control.php');
         $user = new UserControl();
         $user->updateUser($id, $username, $email, $fullname, $age);
-        echo $id;
+        echo "true";
     }else{
         echo "false";
     }
+
 }else if(isset($_POST["updateBook"])){
     if($_POST["updateBook"] == "true"){
+        
+        $bookId= $_POST["bookID"];
+        $bookTitle= $_POST["bookTitle"];
+        $aboutBook= $_POST["aboutBook"];
+        $publishDate= $_POST["publishDate"];
+        $category= $_POST["category"];
+
+        include('includes/book.control.php');
+        $book = new BookControl();
+        $book->updateBook($bookId,$bookTitle,$aboutBook,$publishDate,$category);
         echo "true";
     }else{
         echo "false";
     }
 }else if(isset($_POST["addNewBook"])){
-    echo "add book";
-    
+    $bookTitle = $_POST["bookTitle"];
+    $aboutBook = $_POST["aboutBook"];
+    $publishDate = $_POST["publishDate"];
+    $category = $_POST["category"];
+    $bookCover = $_FILES["bookCover"]["name"];
+
+    include('includes/book.control.php');
+    $book = new BookControl();
+    $book->addBook($bookTitle,$aboutBook,$publishDate,$category);  
+    header('Location: admin_books.php');
+    exit();
+}else if(isset($_POST["deleteBook"])){
+
+
 }else{
+    header('Location: index.php');
+    exit();
 }
 ?>

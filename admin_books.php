@@ -140,6 +140,7 @@
     <?php
         }
     ?>
+    
     function inModel(){
         html =  '<div class="modal-content">'+
                     '<h1>Are you Sure You Want To Delete This Book?</h1>'+
