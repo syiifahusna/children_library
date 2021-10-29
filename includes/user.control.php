@@ -179,6 +179,12 @@ class UserControl extends User{
         $hashPassword = md5($this->password);
         return $hashPassword;
     }
+
+    public function updateUser($id, $username, $email, $fullname, $age){
+        $user = new User();
+        return $user->setUser($id, $username, $email, $fullname, $age);
+    }
+
 }
 
 ?>

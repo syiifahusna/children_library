@@ -59,5 +59,16 @@ class User extends Connection{
             return false;
         }
     }
+
+    protected function setUser($id, $username, $email, $fullname, $age){ 
+
+        $sql = "UPDATE users SET username='". $username ."', email='". $email ."', fullname='". $fullname. "', age='". $age ."' WHERE id='". $id ."'";
+        
+        if ($this->connect()->query($sql) === TRUE) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

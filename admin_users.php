@@ -50,15 +50,15 @@ btnEdit<?php echo $row["id"] ?>.addEventListener("click",function(){
     closeModal();
 
     //btnupdate user;
-    //get All element
-    let id = document.getElementsByClassName("form-txt")[0];
-    let username = document.getElementsByClassName("form-txt")[1];
-    let email = document.getElementsByClassName("form-txt")[2];
-    let fullname = document.getElementsByClassName("form-txt")[3];
-    let age = document.getElementsByClassName("form-txt")[4];
-
     let  btnUpdate= document.getElementById("update");
     btnUpdate.addEventListener("click",function(){
+        //get All element
+        let id = document.getElementsByClassName("form-txt")[0].value;
+        let username = document.getElementsByClassName("form-txt")[1].value;
+        let email = document.getElementsByClassName("form-txt")[2].value;
+        let fullname = document.getElementsByClassName("form-txt")[3].value;
+        let age = document.getElementsByClassName("form-txt")[4].value;
+        
         updateUser(id,username,email,fullname,age);
     });
 });
@@ -72,19 +72,19 @@ function inModal(id,username,email,fullname,age){
         '<form>'+
             '<div class="form-col">'+
                 '<label>Id</label>'+
-                '<input type="text" class="form-txt" value="'+ id +'" required disabled>'+
+                '<input type="number" class="form-txt" value="'+ id +'" required disabled>'+
             '</div>'+
             '<div class="form-col">'+
                 '<label>Username</label>'+
-                '<input type="text" class="form-txt" value="'+ username +'" required>'+
+                '<input type="text" class="form-txt" value="'+ username +'" maxlength="50" required>'+
             '</div>'+
             '<div class="form-col">'+
                 '<label>Email</label>'+
-                '<input type="email" class="form-txt" value="'+ email +'" required>'+
+                '<input type="email" class="form-txt" value="'+ email +'" maxlength="100" required>'+
             '</div>'+
             '<div class="form-col">'+
                 '<label>Full Name</label>'+
-                '<input type="text" class="form-txt" value="'+ fullname +'" required>'+
+                '<input type="text" class="form-txt" value="'+ fullname +'" maxlength="100" required>'+
             '</div>'+
             '<div class="form-col">'+
                 '<label>Age</label>'+

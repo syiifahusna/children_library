@@ -17,8 +17,17 @@ if(isset($_POST["borrowYes"])){
     echo $borrow_id;
 
 }else if(isset($_POST["updateUser"])){
-    if($_POST["updateUser"] == "true"){
-        echo "true";
+    if($_POST["updateUser"] == true){
+        $id=$_POST["id"];
+        $username=$_POST["username"];
+        $email=$_POST["email"];
+        $fullname=$_POST["fullname"];
+        $age=$_POST["age"];
+
+        include('includes/user.control.php');
+        $user = new UserControl();
+        $user->updateUser($id, $username, $email, $fullname, $age);
+        echo $id;
     }else{
         echo "false";
     }

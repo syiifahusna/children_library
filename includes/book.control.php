@@ -1,3 +1,6 @@
-class BookControl extends Book{
+<?php
+    class BookControl extends Book{
 
-}
+    }
+
+?>
