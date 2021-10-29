@@ -59,6 +59,28 @@ class Book extends Connection{
             return false;
         }
     }
+
+    protected function removeBook($bookId){
+        // sql to delete a record
+        $sql = "DELETE FROM books WHERE id= '". $bookId ."'";
+
+        if ($this->connect()->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function removeBorrowBook($bookId){
+        // sql to delete a record
+        $sql = "DELETE FROM borrow WHERE book_id= '".$bookId."'";
+
+        if ($this->connect()->query($sql) === TRUE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>

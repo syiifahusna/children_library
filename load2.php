@@ -46,7 +46,7 @@ if(isset($_POST["borrowYes"])){
         $book->updateBook($bookId,$bookTitle,$aboutBook,$publishDate,$category);
         echo "true";
     }else{
-        echo "false";
+         echo "false";
     }
 }else if(isset($_POST["addNewBook"])){
     $bookTitle = $_POST["bookTitle"];
@@ -55,14 +55,26 @@ if(isset($_POST["borrowYes"])){
     $category = $_POST["category"];
     $bookCover = $_FILES["bookCover"]["name"];
 
+    echo $aboutBook;
     include('includes/book.control.php');
     $book = new BookControl();
-    $book->addBook($bookTitle,$aboutBook,$publishDate,$category);  
+    echo $book->addBook($bookTitle,$aboutBook,$publishDate,$category);  
     header('Location: admin_books.php');
     exit();
 }else if(isset($_POST["deleteBook"])){
+    
+    if($_POST["deleteBook"] == null){
+        echo "false";
+    }else{
+        $bookId = $_POST["deleteBook"];
+        $bookCover = $_POST["bookCover"];
 
+        include('includes/book.control.php');
+        $book = new BookControl();
+        $book->deleteBook($bookId,$bookCover);
 
+        echo "true";
+    }
 }else{
     header('Location: index.php');
     exit();

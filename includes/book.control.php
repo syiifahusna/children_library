@@ -1,9 +1,10 @@
 <?php
     include('includes/book.class.php');
     class BookControl extends Book{
+
         public function updateBook($bookId,$bookTitle,$aboutBook,$publishDate,$category){
             $book = new Book();
-            return $book->editBook($bookId,$bookTitle,$aboutBook,$publishDate,$category);
+            $result = $book->editBook($bookId,$bookTitle,$aboutBook,$publishDate,$category);
         }
 
         public function addBook($bookTitle,$aboutBook,$publishDate,$category){
@@ -47,8 +48,18 @@
             
         }
 
-        public function deleteBook(){
+        public function deleteBook($bookId,$bookCover){
+            $this->deleteImg($bookCover);
 
+            $book = new Book();            
+            $book->removeBorrowBook($bookId);
+            $book->removeBook($bookId);
+            return true;
+        }
+
+        private function deleteImg($bookCover){
+            $path = "book_img"."/". trim($bookCover);
+            unlink($path);
         }
     }
 

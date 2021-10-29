@@ -100,15 +100,16 @@
             modal.innerHTML = inModel();
             // Get the btn
             let btnNo= document.getElementById("no");
-            let btnYes= document.getElementById("yes");
             //btn action
             btnNo.addEventListener("click",function(){
                 modal.style.display = "none";
             });
 
+            let btnYes= document.getElementById("yes");
             btnYes.addEventListener("click",function(){
                 //send delete request to load2 here
                 modal.innerHTML = inModelYes();
+                deleteBook("<?php echo $row["id"]; ?>"," <?php echo $row["book_cover"]; ?>");
                 let close= document.getElementById("close");
                 close.addEventListener("click",function(){
                     window.location.reload(true);
@@ -140,7 +141,7 @@
     <?php
         }
     ?>
-    
+
     function inModel(){
         html =  '<div class="modal-content">'+
                     '<h1>Are you Sure You Want To Delete This Book?</h1>'+
@@ -150,6 +151,26 @@
                     '</p>'+
                 '</div>';
         return html;
+    }
+
+    function deleteBook(bookId,bookCover){
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            updateBook = this.responseText;
+            console.log(updateBook);
+            if(updateBook == false){
+                let inform = inModelNotify("Error something wrong");
+                modal.innerHTML = inform;
+                closeModalRefresh();
+            }else{
+                let inform = inModelNotify("Succesfully delete book");
+                modal.innerHTML = inform;
+                closeModalRefresh();
+            }
+        }
+        xhttp.open("POST", "load2.php");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("deleteBook="+bookId+"&bookCover="+bookCover);
     }
 
     function inModelYes(){
@@ -229,9 +250,11 @@
     }
 
     function inModelUpdate(bookID,bookTitle,aboutBook,publishDate,category){
+        //console.log(aboutBook);
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
             updateBook = this.responseText;
+            console.log(updateBook);
             if(updateBook == false){
                 let inform = inModelNotify("Error something wrong");
                 modal.innerHTML = inform;
